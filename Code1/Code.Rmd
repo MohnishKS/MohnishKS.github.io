@@ -1,0 +1,896 @@
+---
+title: "ANLY 699-90 Final Project"
+author: "Mohnish K Singh"
+date: "May 20, 2018"
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r load, message=FALSE, warning=FALSE}
+library(UsingR)
+library(ggplot2)
+library(stocks)
+library(quantmod)
+Date1RC <- as.Date("2015-12-17")
+DateB30day1RC <-as.Date("2015-11-04")
+DateA7day1RC <-as.Date("2015-12-28")
+DateA30day1RC <-as.Date("2016-02-01")
+DateA60day1RC <-as.Date("2016-03-15")
+DateA90day1RC <-as.Date("2016-04-27")
+Date2RC <- as.Date("2016-12-14")
+DateB30day2RC <-as.Date("2016-11-01")
+DateA7day2RC <-as.Date("2016-12-22")
+DateA30day2RC <-as.Date("2017-01-27")
+DateA60day2RC <-as.Date("2017-03-13")
+DateA90day2RC <-as.Date("2017-04-25")
+Date3RC <- as.Date("2017-03-15")
+DateB30day3RC <-as.Date("2017-01-31")
+DateA7day3RC <-as.Date("2017-03-23")
+DateA30day3RC <-as.Date("2017-04-26")
+DateA60day3RC <-as.Date("2017-06-02")
+```
+## Impact of Federal interest rate change on common stock of Apple, Inc
+```{r}
+AAPL <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699 -90/Project/Stock Prices/AAPL.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+AAPLB30day1RC <- AAPL[ which(AAPL$Date >= 20151104 & AAPL$Date < 20151217), ]
+AAPLA7day1RC <- AAPL[ which(AAPL$Date >= 20151217 & AAPL$Date <= 20151228), ]
+AAPLA30day1RC <- AAPL[ which(AAPL$Date >= 20151217 & AAPL$Date <= 20160201), ]
+AAPLA60day1RC <- AAPL[ which(AAPL$Date >= 20151217 & AAPL$Date <= 20160315), ]
+AAPLA90day1RC <- AAPL[ which(AAPL$Date >= 20151217 & AAPL$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(AAPLB30day1RC$Adj.Close, AAPLA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(AAPLB30day1RC$Adj.Close, AAPLA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(AAPLB30day1RC$Adj.Close, AAPLA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(AAPLB30day1RC$Adj.Close, AAPLA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+AAPLB30day2RC <- AAPL[ which(AAPL$Date >= 20161101 & AAPL$Date < 20161214), ]
+AAPLA7day2RC <- AAPL[ which(AAPL$Date >= 20161214 & AAPL$Date <= 20161222), ]
+AAPLA30day2RC <- AAPL[ which(AAPL$Date >= 20161214 & AAPL$Date <= 20170127), ]
+AAPLA60day2RC <- AAPL[ which(AAPL$Date >= 20161214 & AAPL$Date <= 20170313), ]
+AAPLA90day2RC <- AAPL[ which(AAPL$Date >= 20161214 & AAPL$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(AAPLB30day2RC$Adj.Close, AAPLA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(AAPLB30day2RC$Adj.Close, AAPLA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(AAPLB30day2RC$Adj.Close, AAPLA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(AAPLB30day2RC$Adj.Close, AAPLA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+AAPLB30day3RC <- AAPL[ which(AAPL$Date >= 20170131 & AAPL$Date < 20170315), ]
+AAPLA7day3RC <- AAPL[ which(AAPL$Date >= 20170315 & AAPL$Date <= 20170323), ]
+AAPLA30day3RC <- AAPL[ which(AAPL$Date >= 20170315 & AAPL$Date <= 20170426), ]
+AAPLA60day3RC <- AAPL[ which(AAPL$Date >= 20170315 & AAPL$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(AAPLB30day3RC$Adj.Close, AAPLA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(AAPLB30day3RC$Adj.Close, AAPLA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(AAPLB30day3RC$Adj.Close, AAPLA60day3RC$Adj.Close)
+```
+## Impact of Federal interest rate change on common stock of Bank of America Corporation
+```{r}
+BAC <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699-90/Project/Stock Prices/BAC.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+BACB30day1RC <- BAC[ which(BAC$Date >= 20151104 & BAC$Date < 20151217), ]
+BACA7day1RC <- BAC[ which(BAC$Date >= 20151217 & BAC$Date <= 20151228), ]
+BACA30day1RC <- BAC[ which(BAC$Date >= 20151217 & BAC$Date <= 20160201), ]
+BACA60day1RC <- BAC[ which(BAC$Date >= 20151217 & BAC$Date <= 20160315), ]
+BACA90day1RC <- BAC[ which(BAC$Date >= 20151217 & BAC$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(BACB30day1RC$Adj.Close, BACA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(BACB30day1RC$Adj.Close, BACA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(BACB30day1RC$Adj.Close, BACA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(BACB30day1RC$Adj.Close, BACA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+BACB30day2RC <- BAC[ which(BAC$Date >= 20161101 & BAC$Date < 20161214), ]
+BACA7day2RC <- BAC[ which(BAC$Date >= 20161214 & BAC$Date <= 20161222), ]
+BACA30day2RC <- BAC[ which(BAC$Date >= 20161214 & BAC$Date <= 20170127), ]
+BACA60day2RC <- BAC[ which(BAC$Date >= 20161214 & BAC$Date <= 20170313), ]
+BACA90day2RC <- BAC[ which(BAC$Date >= 20161214 & BAC$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(BACB30day2RC$Adj.Close, BACA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(BACB30day2RC$Adj.Close, BACA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(BACB30day2RC$Adj.Close, BACA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(BACB30day2RC$Adj.Close, BACA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+BACB30day3RC <- BAC[ which(BAC$Date >= 20170131 & BAC$Date < 20170315), ]
+BACA7day3RC <- BAC[ which(BAC$Date >= 20170315 & BAC$Date <= 20170323), ]
+BACA30day3RC <- BAC[ which(BAC$Date >= 20170315 & BAC$Date <= 20170426), ]
+BACA60day3RC <- BAC[ which(BAC$Date >= 20170315 & BAC$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(BACB30day3RC$Adj.Close, BACA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(BACB30day3RC$Adj.Close, BACA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(BACB30day3RC$Adj.Close, BACA60day3RC$Adj.Close)
+```
+## Impact of Federal interest rate change on common stock of Brookfield Renewable Partners
+```{r}
+BEP <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699-90/Project/Stock Prices/BEP.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+BEPB30day1RC <- BEP[ which(BEP$Date >= 20151104 & BEP$Date < 20151217), ]
+BEPA7day1RC <- BEP[ which(BEP$Date >= 20151217 & BEP$Date <= 20151228), ]
+BEPA30day1RC <- BEP[ which(BEP$Date >= 20151217 & BEP$Date <= 20160201), ]
+BEPA60day1RC <- BEP[ which(BEP$Date >= 20151217 & BEP$Date <= 20160315), ]
+BEPA90day1RC <- BEP[ which(BEP$Date >= 20151217 & BEP$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(BEPB30day1RC$Adj.Close, BEPA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(BEPB30day1RC$Adj.Close, BEPA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(BEPB30day1RC$Adj.Close, BEPA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(BEPB30day1RC$Adj.Close, BEPA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+BEPB30day2RC <- BEP[ which(BEP$Date >= 20161101 & BEP$Date < 20161214), ]
+BEPA7day2RC <- BEP[ which(BEP$Date >= 20161214 & BEP$Date <= 20161222), ]
+BEPA30day2RC <- BEP[ which(BEP$Date >= 20161214 & BEP$Date <= 20170127), ]
+BEPA60day2RC <- BEP[ which(BEP$Date >= 20161214 & BEP$Date <= 20170313), ]
+BEPA90day2RC <- BEP[ which(BEP$Date >= 20161214 & BEP$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(BEPB30day2RC$Adj.Close, BEPA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(BEPB30day2RC$Adj.Close, BEPA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(BEPB30day2RC$Adj.Close, BEPA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(BEPB30day2RC$Adj.Close, BEPA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+BEPB30day3RC <- BEP[ which(BEP$Date >= 20170131 & BEP$Date < 20170315), ]
+BEPA7day3RC <- BEP[ which(BEP$Date >= 20170315 & BEP$Date <= 20170323), ]
+BEPA30day3RC <- BEP[ which(BEP$Date >= 20170315 & BEP$Date <= 20170426), ]
+BEPA60day3RC <- BEP[ which(BEP$Date >= 20170315 & BEP$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(BEPB30day3RC$Adj.Close, BEPA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(BEPB30day3RC$Adj.Close, BEPA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(BEPB30day3RC$Adj.Close, BEPA60day3RC$Adj.Close)
+```
+## Impact of Federal interest rate change on common stock of Canadian National Railway
+```{r}
+CNI <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699-90/Project/Stock Prices/CNI.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+CNIB30day1RC <- CNI[ which(CNI$Date >= 20151104 & CNI$Date < 20151217), ]
+CNIA7day1RC <- CNI[ which(CNI$Date >= 20151217 & CNI$Date <= 20151228), ]
+CNIA30day1RC <- CNI[ which(CNI$Date >= 20151217 & CNI$Date <= 20160201), ]
+CNIA60day1RC <- CNI[ which(CNI$Date >= 20151217 & CNI$Date <= 20160315), ]
+CNIA90day1RC <- CNI[ which(CNI$Date >= 20151217 & CNI$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(CNIB30day1RC$Adj.Close, CNIA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(CNIB30day1RC$Adj.Close, CNIA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(CNIB30day1RC$Adj.Close, CNIA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(CNIB30day1RC$Adj.Close, CNIA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+CNIB30day2RC <- CNI[ which(CNI$Date >= 20161101 & CNI$Date < 20161214), ]
+CNIA7day2RC <- CNI[ which(CNI$Date >= 20161214 & CNI$Date <= 20161222), ]
+CNIA30day2RC <- CNI[ which(CNI$Date >= 20161214 & CNI$Date <= 20170127), ]
+CNIA60day2RC <- CNI[ which(CNI$Date >= 20161214 & CNI$Date <= 20170313), ]
+CNIA90day2RC <- CNI[ which(CNI$Date >= 20161214 & CNI$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(CNIB30day2RC$Adj.Close, CNIA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(CNIB30day2RC$Adj.Close, CNIA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(CNIB30day2RC$Adj.Close, CNIA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(CNIB30day2RC$Adj.Close, CNIA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+CNIB30day3RC <- CNI[ which(CNI$Date >= 20170131 & CNI$Date < 20170315), ]
+CNIA7day3RC <- CNI[ which(CNI$Date >= 20170315 & CNI$Date <= 20170323), ]
+CNIA30day3RC <- CNI[ which(CNI$Date >= 20170315 & CNI$Date <= 20170426), ]
+CNIA60day3RC <- CNI[ which(CNI$Date >= 20170315 & CNI$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(CNIB30day3RC$Adj.Close, CNIA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(CNIB30day3RC$Adj.Close, CNIA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(CNIB30day3RC$Adj.Close, CNIA60day3RC$Adj.Close)
+```
+## Impact of Federal interest rate change on common stock of Darden Restaurants, Inc.
+```{r}
+DRI <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699-90/Project/Stock Prices/DRI.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+DRIB30day1RC <- DRI[ which(DRI$Date >= 20151104 & DRI$Date < 20151217), ]
+DRIA7day1RC <- DRI[ which(DRI$Date >= 20151217 & DRI$Date <= 20151228), ]
+DRIA30day1RC <- DRI[ which(DRI$Date >= 20151217 & DRI$Date <= 20160201), ]
+DRIA60day1RC <- DRI[ which(DRI$Date >= 20151217 & DRI$Date <= 20160315), ]
+DRIA90day1RC <- DRI[ which(DRI$Date >= 20151217 & DRI$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(DRIB30day1RC$Adj.Close, DRIA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(DRIB30day1RC$Adj.Close, DRIA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(DRIB30day1RC$Adj.Close, DRIA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(DRIB30day1RC$Adj.Close, DRIA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+DRIB30day2RC <- DRI[ which(DRI$Date >= 20161101 & DRI$Date < 20161214), ]
+DRIA7day2RC <- DRI[ which(DRI$Date >= 20161214 & DRI$Date <= 20161222), ]
+DRIA30day2RC <- DRI[ which(DRI$Date >= 20161214 & DRI$Date <= 20170127), ]
+DRIA60day2RC <- DRI[ which(DRI$Date >= 20161214 & DRI$Date <= 20170313), ]
+DRIA90day2RC <- DRI[ which(DRI$Date >= 20161214 & DRI$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(DRIB30day2RC$Adj.Close, DRIA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(DRIB30day2RC$Adj.Close, DRIA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(DRIB30day2RC$Adj.Close, DRIA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(DRIB30day2RC$Adj.Close, DRIA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+DRIB30day3RC <- DRI[ which(DRI$Date >= 20170131 & DRI$Date < 20170315), ]
+DRIA7day3RC <- DRI[ which(DRI$Date >= 20170315 & DRI$Date <= 20170323), ]
+DRIA30day3RC <- DRI[ which(DRI$Date >= 20170315 & DRI$Date <= 20170426), ]
+DRIA60day3RC <- DRI[ which(DRI$Date >= 20170315 & DRI$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(DRIB30day3RC$Adj.Close, DRIA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(DRIB30day3RC$Adj.Close, DRIA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(DRIB30day3RC$Adj.Close, DRIA60day3RC$Adj.Close)
+```
+## Impact of Federal interest rate change on common stock of General Motors
+```{r}
+GM <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699-90/Project/Stock Prices/GM.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+GMB30day1RC <- GM[ which(GM$Date >= 20151104 & GM$Date < 20151217), ]
+GMA7day1RC <- GM[ which(GM$Date >= 20151217 & GM$Date <= 20151228), ]
+GMA30day1RC <- GM[ which(GM$Date >= 20151217 & GM$Date <= 20160201), ]
+GMA60day1RC <- GM[ which(GM$Date >= 20151217 & GM$Date <= 20160315), ]
+GMA90day1RC <- GM[ which(GM$Date >= 20151217 & GM$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(GMB30day1RC$Adj.Close, GMA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(GMB30day1RC$Adj.Close, GMA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(GMB30day1RC$Adj.Close, GMA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(GMB30day1RC$Adj.Close, GMA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+GMB30day2RC <- GM[ which(GM$Date >= 20161101 & GM$Date < 20161214), ]
+GMA7day2RC <- GM[ which(GM$Date >= 20161214 & GM$Date <= 20161222), ]
+GMA30day2RC <- GM[ which(GM$Date >= 20161214 & GM$Date <= 20170127), ]
+GMA60day2RC <- GM[ which(GM$Date >= 20161214 & GM$Date <= 20170313), ]
+GMA90day2RC <- GM[ which(GM$Date >= 20161214 & GM$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(GMB30day2RC$Adj.Close, GMA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(GMB30day2RC$Adj.Close, GMA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(GMB30day2RC$Adj.Close, GMA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(GMB30day2RC$Adj.Close, GMA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+GMB30day3RC <- GM[ which(GM$Date >= 20170131 & GM$Date < 20170315), ]
+GMA7day3RC <- GM[ which(GM$Date >= 20170315 & GM$Date <= 20170323), ]
+GMA30day3RC <- GM[ which(GM$Date >= 20170315 & GM$Date <= 20170426), ]
+GMA60day3RC <- GM[ which(GM$Date >= 20170315 & GM$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(GMB30day3RC$Adj.Close, GMA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(GMB30day3RC$Adj.Close, GMA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(GMB30day3RC$Adj.Close, GMA60day3RC$Adj.Close)
+```
+## Impact of Federal interest rate change on common stock of Lockheed Martin
+```{r}
+LMT <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699-90/Project/Stock Prices/LMT.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+LMTB30day1RC <- LMT[ which(LMT$Date >= 20151104 & LMT$Date < 20151217), ]
+LMTA7day1RC <- LMT[ which(LMT$Date >= 20151217 & LMT$Date <= 20151228), ]
+LMTA30day1RC <- LMT[ which(LMT$Date >= 20151217 & LMT$Date <= 20160201), ]
+LMTA60day1RC <- LMT[ which(LMT$Date >= 20151217 & LMT$Date <= 20160315), ]
+LMTA90day1RC <- LMT[ which(LMT$Date >= 20151217 & LMT$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(LMTB30day1RC$Adj.Close, LMTA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(LMTB30day1RC$Adj.Close, LMTA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(LMTB30day1RC$Adj.Close, LMTA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(LMTB30day1RC$Adj.Close, LMTA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+LMTB30day2RC <- LMT[ which(LMT$Date >= 20161101 & LMT$Date < 20161214), ]
+LMTA7day2RC <- LMT[ which(LMT$Date >= 20161214 & LMT$Date <= 20161222), ]
+LMTA30day2RC <- LMT[ which(LMT$Date >= 20161214 & LMT$Date <= 20170127), ]
+LMTA60day2RC <- LMT[ which(LMT$Date >= 20161214 & LMT$Date <= 20170313), ]
+LMTA90day2RC <- LMT[ which(LMT$Date >= 20161214 & LMT$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(LMTB30day2RC$Adj.Close, LMTA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(LMTB30day2RC$Adj.Close, LMTA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(LMTB30day2RC$Adj.Close, LMTA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(LMTB30day2RC$Adj.Close, LMTA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+LMTB30day3RC <- LMT[ which(LMT$Date >= 20170131 & LMT$Date < 20170315), ]
+LMTA7day3RC <- LMT[ which(LMT$Date >= 20170315 & LMT$Date <= 20170323), ]
+LMTA30day3RC <- LMT[ which(LMT$Date >= 20170315 & LMT$Date <= 20170426), ]
+LMTA60day3RC <- LMT[ which(LMT$Date >= 20170315 & LMT$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(LMTB30day3RC$Adj.Close, LMTA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(LMTB30day3RC$Adj.Close, LMTA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(LMTB30day3RC$Adj.Close, LMTA60day3RC$Adj.Close)
+```
+## Impact of Federal interest rate change on common stock of Nike
+```{r}
+NKE <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699-90/Project/Stock Prices/NKE.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+NKEB30day1RC <- NKE[ which(NKE$Date >= 20151104 & NKE$Date < 20151217), ]
+NKEA7day1RC <- NKE[ which(NKE$Date >= 20151217 & NKE$Date <= 20151228), ]
+NKEA30day1RC <- NKE[ which(NKE$Date >= 20151217 & NKE$Date <= 20160201), ]
+NKEA60day1RC <- NKE[ which(NKE$Date >= 20151217 & NKE$Date <= 20160315), ]
+NKEA90day1RC <- NKE[ which(NKE$Date >= 20151217 & NKE$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(NKEB30day1RC$Adj.Close, NKEA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(NKEB30day1RC$Adj.Close, NKEA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(NKEB30day1RC$Adj.Close, NKEA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(NKEB30day1RC$Adj.Close, NKEA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+NKEB30day2RC <- NKE[ which(NKE$Date >= 20161101 & NKE$Date < 20161214), ]
+NKEA7day2RC <- NKE[ which(NKE$Date >= 20161214 & NKE$Date <= 20161222), ]
+NKEA30day2RC <- NKE[ which(NKE$Date >= 20161214 & NKE$Date <= 20170127), ]
+NKEA60day2RC <- NKE[ which(NKE$Date >= 20161214 & NKE$Date <= 20170313), ]
+NKEA90day2RC <- NKE[ which(NKE$Date >= 20161214 & NKE$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(NKEB30day2RC$Adj.Close, NKEA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(NKEB30day2RC$Adj.Close, NKEA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(NKEB30day2RC$Adj.Close, NKEA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(NKEB30day2RC$Adj.Close, NKEA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+NKEB30day3RC <- NKE[ which(NKE$Date >= 20170131 & NKE$Date < 20170315), ]
+NKEA7day3RC <- NKE[ which(NKE$Date >= 20170315 & NKE$Date <= 20170323), ]
+NKEA30day3RC <- NKE[ which(NKE$Date >= 20170315 & NKE$Date <= 20170426), ]
+NKEA60day3RC <- NKE[ which(NKE$Date >= 20170315 & NKE$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(NKEB30day3RC$Adj.Close, NKEA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(NKEB30day3RC$Adj.Close, NKEA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(NKEB30day3RC$Adj.Close, NKEA60day3RC$Adj.Close)
+```
+## Impact of Federal interest rate change on common stock of Amazon
+```{r}
+AMZN <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699-90/Project/Stock Prices/AMZN.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+AMZNB30day1RC <- AMZN[ which(AMZN$Date >= 20151104 & AMZN$Date < 20151217), ]
+AMZNA7day1RC <- AMZN[ which(AMZN$Date >= 20151217 & AMZN$Date <= 20151228), ]
+AMZNA30day1RC <- AMZN[ which(AMZN$Date >= 20151217 & AMZN$Date <= 20160201), ]
+AMZNA60day1RC <- AMZN[ which(AMZN$Date >= 20151217 & AMZN$Date <= 20160315), ]
+AMZNA90day1RC <- AMZN[ which(AMZN$Date >= 20151217 & AMZN$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(AMZNB30day1RC$Adj.Close, AMZNA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(AMZNB30day1RC$Adj.Close, AMZNA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(AMZNB30day1RC$Adj.Close, AMZNA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(AMZNB30day1RC$Adj.Close, AMZNA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+AMZNB30day2RC <- AMZN[ which(AMZN$Date >= 20161101 & AMZN$Date < 20161214), ]
+AMZNA7day2RC <- AMZN[ which(AMZN$Date >= 20161214 & AMZN$Date <= 20161222), ]
+AMZNA30day2RC <- AMZN[ which(AMZN$Date >= 20161214 & AMZN$Date <= 20170127), ]
+AMZNA60day2RC <- AMZN[ which(AMZN$Date >= 20161214 & AMZN$Date <= 20170313), ]
+AMZNA90day2RC <- AMZN[ which(AMZN$Date >= 20161214 & AMZN$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(AMZNB30day2RC$Adj.Close, AMZNA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(AMZNB30day2RC$Adj.Close, AMZNA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(AMZNB30day2RC$Adj.Close, AMZNA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(AMZNB30day2RC$Adj.Close, AMZNA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+AMZNB30day3RC <- AMZN[ which(AMZN$Date >= 20170131 & AMZN$Date < 20170315), ]
+AMZNA7day3RC <- AMZN[ which(AMZN$Date >= 20170315 & AMZN$Date <= 20170323), ]
+AMZNA30day3RC <- AMZN[ which(AMZN$Date >= 20170315 & AMZN$Date <= 20170426), ]
+AMZNA60day3RC <- AMZN[ which(AMZN$Date >= 20170315 & AMZN$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(AMZNB30day3RC$Adj.Close, AMZNA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(AMZNB30day3RC$Adj.Close, AMZNA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(AMZNB30day3RC$Adj.Close, AMZNA60day3RC$Adj.Close)
+```
+## Impact of Federal interest rate change on common stock of American Express
+```{r}
+AXP <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699-90/Project/Stock Prices/AXP.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+AXPB30day1RC <- AXP[ which(AXP$Date >= 20151104 & AXP$Date < 20151217), ]
+AXPA7day1RC <- AXP[ which(AXP$Date >= 20151217 & AXP$Date <= 20151228), ]
+AXPA30day1RC <- AXP[ which(AXP$Date >= 20151217 & AXP$Date <= 20160201), ]
+AXPA60day1RC <- AXP[ which(AXP$Date >= 20151217 & AXP$Date <= 20160315), ]
+AXPA90day1RC <- AXP[ which(AXP$Date >= 20151217 & AXP$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(AXPB30day1RC$Adj.Close, AXPA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(AXPB30day1RC$Adj.Close, AXPA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(AXPB30day1RC$Adj.Close, AXPA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(AXPB30day1RC$Adj.Close, AXPA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+AXPB30day2RC <- AXP[ which(AXP$Date >= 20161101 & AXP$Date < 20161214), ]
+AXPA7day2RC <- AXP[ which(AXP$Date >= 20161214 & AXP$Date <= 20161222), ]
+AXPA30day2RC <- AXP[ which(AXP$Date >= 20161214 & AXP$Date <= 20170127), ]
+AXPA60day2RC <- AXP[ which(AXP$Date >= 20161214 & AXP$Date <= 20170313), ]
+AXPA90day2RC <- AXP[ which(AXP$Date >= 20161214 & AXP$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(AXPB30day2RC$Adj.Close, AXPA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(AXPB30day2RC$Adj.Close, AXPA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(AXPB30day2RC$Adj.Close, AXPA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(AXPB30day2RC$Adj.Close, AXPA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+AXPB30day3RC <- AXP[ which(AXP$Date >= 20170131 & AXP$Date < 20170315), ]
+AXPA7day3RC <- AXP[ which(AXP$Date >= 20170315 & AXP$Date <= 20170323), ]
+AXPA30day3RC <- AXP[ which(AXP$Date >= 20170315 & AXP$Date <= 20170426), ]
+AXPA60day3RC <- AXP[ which(AXP$Date >= 20170315 & AXP$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(AXPB30day3RC$Adj.Close, AXPA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(AXPB30day3RC$Adj.Close, AXPA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(AXPB30day3RC$Adj.Close, AXPA60day3RC$Adj.Close)
+```
+## Impact of Federal interest rate change on common stock of Dominos Pizza
+```{r}
+DPZ <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699-90/Project/Stock Prices/DPZ.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+DPZB30day1RC <- DPZ[ which(DPZ$Date >= 20151104 & DPZ$Date < 20151217), ]
+DPZA7day1RC <- DPZ[ which(DPZ$Date >= 20151217 & DPZ$Date <= 20151228), ]
+DPZA30day1RC <- DPZ[ which(DPZ$Date >= 20151217 & DPZ$Date <= 20160201), ]
+DPZA60day1RC <- DPZ[ which(DPZ$Date >= 20151217 & DPZ$Date <= 20160315), ]
+DPZA90day1RC <- DPZ[ which(DPZ$Date >= 20151217 & DPZ$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(DPZB30day1RC$Adj.Close, DPZA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(DPZB30day1RC$Adj.Close, DPZA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(DPZB30day1RC$Adj.Close, DPZA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(DPZB30day1RC$Adj.Close, DPZA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+DPZB30day2RC <- DPZ[ which(DPZ$Date >= 20161101 & DPZ$Date < 20161214), ]
+DPZA7day2RC <- DPZ[ which(DPZ$Date >= 20161214 & DPZ$Date <= 20161222), ]
+DPZA30day2RC <- DPZ[ which(DPZ$Date >= 20161214 & DPZ$Date <= 20170127), ]
+DPZA60day2RC <- DPZ[ which(DPZ$Date >= 20161214 & DPZ$Date <= 20170313), ]
+DPZA90day2RC <- DPZ[ which(DPZ$Date >= 20161214 & DPZ$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(DPZB30day2RC$Adj.Close, DPZA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(DPZB30day2RC$Adj.Close, DPZA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(DPZB30day2RC$Adj.Close, DPZA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(DPZB30day2RC$Adj.Close, DPZA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+DPZB30day3RC <- DPZ[ which(DPZ$Date >= 20170131 & DPZ$Date < 20170315), ]
+DPZA7day3RC <- DPZ[ which(DPZ$Date >= 20170315 & DPZ$Date <= 20170323), ]
+DPZA30day3RC <- DPZ[ which(DPZ$Date >= 20170315 & DPZ$Date <= 20170426), ]
+DPZA60day3RC <- DPZ[ which(DPZ$Date >= 20170315 & DPZ$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(DPZB30day3RC$Adj.Close, DPZA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(DPZB30day3RC$Adj.Close, DPZA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(DPZB30day3RC$Adj.Close, DPZA60day3RC$Adj.Close)
+```
+## Impact of Federal interest rate change on common stock of Wells Fargo
+```{r}
+WFC <- read.csv("C:/Users/mks/Google Drive/HU/ANLY 699-90/Project/Stock Prices/WFC.csv")
+```
+### Analysis of stock prices after 1st interest rate change in Dec 2015
+```{r}
+WFCB30day1RC <- WFC[ which(WFC$Date >= 20151104 & WFC$Date < 20151217), ]
+WFCA7day1RC <- WFC[ which(WFC$Date >= 20151217 & WFC$Date <= 20151228), ]
+WFCA30day1RC <- WFC[ which(WFC$Date >= 20151217 & WFC$Date <= 20160201), ]
+WFCA60day1RC <- WFC[ which(WFC$Date >= 20151217 & WFC$Date <= 20160315), ]
+WFCA90day1RC <- WFC[ which(WFC$Date >= 20151217 & WFC$Date <= 20160427), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 1st interest rate change in 2015 (first interest rate change after 2008 financial crisis) 
+```{r}
+t.test(WFCB30day1RC$Adj.Close, WFCA7day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2015
+```{r}
+t.test(WFCB30day1RC$Adj.Close, WFCA30day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest change in 2015
+```{r}
+t.test(WFCB30day1RC$Adj.Close, WFCA60day1RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest rate change in 2015
+```{r}
+t.test(WFCB30day1RC$Adj.Close, WFCA90day1RC$Adj.Close)
+```
+### Analysis of stock prices after 2nd interest rate change in Dec 2016
+```{r}
+WFCB30day2RC <- WFC[ which(WFC$Date >= 20161101 & WFC$Date < 20161214), ]
+WFCA7day2RC <- WFC[ which(WFC$Date >= 20161214 & WFC$Date <= 20161222), ]
+WFCA30day2RC <- WFC[ which(WFC$Date >= 20161214 & WFC$Date <= 20170127), ]
+WFCA60day2RC <- WFC[ which(WFC$Date >= 20161214 & WFC$Date <= 20170313), ]
+WFCA90day2RC <- WFC[ which(WFC$Date >= 20161214 & WFC$Date <= 20170425), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 2nd interest rate change in 2016 (Second interest rate change after 2008 financial crisis) 
+```{r}
+t.test(WFCB30day2RC$Adj.Close, WFCA7day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2016
+```{r}
+t.test(WFCB30day2RC$Adj.Close, WFCA30day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2016
+```{r}
+t.test(WFCB30day2RC$Adj.Close, WFCA60day2RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 90 days after interest change in 2016
+```{r}
+t.test(WFCB30day2RC$Adj.Close, WFCA90day2RC$Adj.Close)
+```
+### Analysis of stock prices after 3rd interest rate change in March 2017
+```{r}
+WFCB30day3RC <- WFC[ which(WFC$Date >= 20170131 & WFC$Date < 20170315), ]
+WFCA7day3RC <- WFC[ which(WFC$Date >= 20170315 & WFC$Date <= 20170323), ]
+WFCA30day3RC <- WFC[ which(WFC$Date >= 20170315 & WFC$Date <= 20170426), ]
+WFCA60day3RC <- WFC[ which(WFC$Date >= 20170315 & WFC$Date <= 20170602), ]
+```
+### t-test for stock prices - 30 days before interest rate change and 7 days after 3rd interest rate change in 2017 (Third interest rate change after 2008 financial crisis) 
+```{r}
+t.test(WFCB30day3RC$Adj.Close, WFCA7day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 30 days after interest rate change in 2017
+```{r}
+t.test(WFCB30day3RC$Adj.Close, WFCA30day3RC$Adj.Close)
+```
+### t-test for stock prices - 30 days before interest rate change and 60 days after interest rate change in 2017
+```{r}
+t.test(WFCB30day3RC$Adj.Close, WFCA60day3RC$Adj.Close)
+```
+
