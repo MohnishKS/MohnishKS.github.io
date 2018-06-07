@@ -1,5 +1,7 @@
 Empirical research project to study the influence of Federal Reserve interest rate changes on US stocks
 
+Link to project - https://github.com/MohnishKS/MohnishKS.github.io
+
 Summary
 This research project aims to study, empirically, the impact of Federal interest rate (overnight rate) changes, which are announced by the US Federal Reserve (FOMC), on US stocks. For this study, stocks data was analysed for 12 companies across 8 industries, namely Technology, Finance, Energy, Infrastructure, Manufacturing, Auto, Retail, and Food. All these are public companies whose common stocks are traded on New York Stock Exchange (NYSE).
 
